@@ -48,12 +48,13 @@ function JobDetailPageContent() {
         );
     }
 
-    const employmentTypeColor: 'default' | 'success' | 'warning' | 'danger' = {
+    const colorMap: Record<string, 'default' | 'success' | 'warning' | 'danger'> = {
         'Full-time': 'success',
         'Part-time': 'warning',
         Internship: 'warning',
         NSS: 'default',
-    }[job.employmentType] || 'default';
+    };
+    const employmentTypeColor = colorMap[job.employmentType] || 'default';
 
     return (
         <main className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900">

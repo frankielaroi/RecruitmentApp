@@ -22,24 +22,20 @@ const submissionSlice = createSlice({
         addSubmission: (state, action: PayloadAction<Submission>) => {
             state.submissions.push(action.payload);
         },
-
-        // Get submissions by job ID
-        getSubmissionsByJobId: (state, action: PayloadAction<string>) => {
-            return state.submissions.filter((s) => s.jobId === action.payload);
-        },
-
-        // Get a specific submission
-        getSubmissionById: (state, action: PayloadAction<string>) => {
-            return state.submissions.find((s) => s.id === action.payload);
-        },
     },
 });
 
 export const {
     initializeSubmissions,
     addSubmission,
-    getSubmissionsByJobId,
-    getSubmissionById,
 } = submissionSlice.actions;
+
+export const selectSubmissionsByJobId = (state: { submissions: SubmissionState }, jobId: string) => {
+    return state.submissions.submissions.filter((s) => s.jobId === jobId);
+};
+
+export const selectSubmissionById = (state: { submissions: SubmissionState }, submissionId: string) => {
+    return state.submissions.submissions.find((s) => s.id === submissionId);
+};
 
 export default submissionSlice.reducer;

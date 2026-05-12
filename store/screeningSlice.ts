@@ -71,11 +71,6 @@ const screeningSlice = createSlice({
         deleteScreening: (state, action: PayloadAction<string>) => {
             state.screenings = state.screenings.filter((s) => s.id !== action.payload);
         },
-
-        // Get screening by job ID
-        getScreeningByJobId: (state, action: PayloadAction<string>) => {
-            return state.screenings.find((s) => s.jobId === action.payload);
-        },
     },
 });
 
@@ -87,5 +82,9 @@ export const {
     removeQuestionFromScreening,
     deleteScreening,
 } = screeningSlice.actions;
+
+export const selectScreeningByJobId = (state: { screenings: ScreeningState }, jobId: string) => {
+    return state.screenings.screenings.find((s) => s.jobId === jobId);
+};
 
 export default screeningSlice.reducer;
